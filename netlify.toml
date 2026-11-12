@@ -4,3 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# Runs the Next.js adapter so pages, routing, API routes and image
+# optimization are wired up on Netlify instead of uploading raw .next output.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
