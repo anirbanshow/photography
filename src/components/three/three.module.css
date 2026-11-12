@@ -1,0 +1,343 @@
+.hero,
+.canvasLayer,
+.heroVignette,
+.flatStage {
+  position: absolute;
+  inset: 0;
+}
+
+.hero {
+  container-type: size;
+  isolation: isolate;
+  overflow: hidden;
+  background: #15100c;
+}
+
+.heroCover {
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero[data-camera="true"] .heroCover {
+  transform: translate3d(var(--hero-shift-x, 0px), var(--hero-shift-y, 0px), 0) scale(var(--hero-zoom, 1));
+  transition: transform 0.58s cubic-bezier(0.22, 0.7, 0.15, 1);
+  will-change: transform;
+}
+
+.canvasLayer {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.48s ease;
+}
+
+.canvasLayer[data-ready="true"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hero .canvasLayer,
+.heroVignette {
+  pointer-events: none;
+}
+
+.heroVignette {
+  background:
+    linear-gradient(90deg, #0808088c 0%, #0808083b 43%, transparent 82%),
+    linear-gradient(0deg, #080808b8 0%, transparent 25%, transparent 83%, #0808086b 100%);
+}
+
+.gallery {
+  min-width: 0;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.galleryHeader,
+.galleryHint,
+.galleryMeta p,
+.galleryCount,
+.projectLink {
+  font-family: var(--font-ui), sans-serif;
+  font-size: 0.66rem;
+  font-weight: 550;
+  line-height: 1.25;
+  letter-spacing: 0.155em;
+  text-transform: uppercase;
+}
+
+.galleryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  color: var(--muted);
+}
+
+.galleryHeader span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--accent);
+}
+
+.galleryStage {
+  --stage-height: clamp(22rem, 53svh, 42rem);
+  --frame-width: 44%;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  height: var(--stage-height);
+  border-block: 1px solid var(--line);
+  background: #0d0d0c;
+  touch-action: pan-y pinch-zoom;
+}
+
+.galleryStage[data-interactive="true"] {
+  cursor: grab;
+  user-select: none;
+}
+
+.galleryStage[data-over-photo="true"] {
+  cursor: pointer;
+}
+
+.galleryStage[data-dragging="true"] {
+  cursor: grabbing;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .galleryStage[data-interactive="true"]:not([data-over-photo="true"]):not([data-dragging="true"]) {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Ccircle cx='18' cy='18' r='15.5' fill='%23120e0b' fill-opacity='.8' stroke='%23ddaf7c'/%3E%3Cpath d='M9 18h18m-15-3-3 3 3 3m12-6 3 3-3 3' fill='none' stroke='%23f2e4d2' stroke-width='1.15' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 18 18, grab;
+  }
+}
+
+.galleryStage:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: -3px;
+}
+
+.stageAxis {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.stageAxis::before,
+.stageAxis::after {
+  position: absolute;
+  content: "";
+  background: #ffffff0a;
+}
+
+.stageAxis::before {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+}
+
+.stageAxis::after {
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 1px;
+}
+
+.flatFrame {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  overflow: hidden;
+  background: #24211d;
+  color: var(--foreground);
+  border: 0;
+  cursor: pointer;
+  opacity: 0.45;
+  transition: opacity 0.2s ease;
+}
+
+.flatFrame[data-current] {
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+.flatFrame:hover,
+.flatFrame:focus-visible {
+  opacity: 1;
+}
+
+.flatPhoto {
+  object-fit: cover;
+}
+
+.flatIcon {
+  position: absolute;
+  right: 0.65rem;
+  bottom: 0.65rem;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: #080808a6;
+}
+
+.galleryHint {
+  position: absolute;
+  z-index: 2;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.65rem;
+  background: #080808cc;
+  color: var(--foreground);
+  pointer-events: none;
+}
+
+.galleryControls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1.25rem;
+  min-height: 6.6rem;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.galleryMeta p {
+  margin: 0 0 0.45rem;
+  color: var(--accent);
+}
+
+.galleryMeta p span {
+  margin-inline: 0.2rem;
+}
+
+.galleryMeta h2 {
+  margin: 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.45rem, 2.5vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.galleryNavigation {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.controlButton {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--foreground);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.controlButton:hover:not(:disabled) {
+  border-color: var(--accent);
+  background-color: var(--accent);
+  color: var(--background);
+}
+
+.controlButton:disabled {
+  opacity: 0.34;
+  cursor: default;
+}
+
+.galleryCount {
+  min-width: 3.75rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.galleryCount span {
+  color: var(--accent);
+}
+
+.projectLink {
+  display: inline-flex;
+  align-items: center;
+  justify-self: end;
+  gap: 0.55rem;
+  min-height: 2.75rem;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.projectLink:hover {
+  color: var(--accent);
+}
+
+.controlButton:focus-visible,
+.projectLink:focus-visible,
+.flatFrame:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 650px) {
+  .heroVignette {
+    background: linear-gradient(0deg, #080808ba 0%, #08080842 48%, transparent 76%, #08080866 100%);
+  }
+
+  .galleryStage {
+    --stage-height: clamp(19rem, 52svh, 31rem);
+    --frame-width: 73%;
+  }
+
+  .galleryControls {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 0.5rem;
+    row-gap: 0.25rem;
+  }
+
+  .galleryNavigation {
+    grid-row: span 2;
+    gap: 0.25rem;
+  }
+
+  .galleryCount {
+    min-width: 2.8rem;
+    letter-spacing: 0.04em;
+  }
+
+  .projectLink {
+    justify-self: start;
+  }
+}
+
+@container (max-aspect-ratio: 11/10) {
+  .heroCover {
+    object-position: 84% center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvasLayer,
+  .controlButton,
+  .projectLink,
+  .flatFrame {
+    transition: none;
+  }
+}

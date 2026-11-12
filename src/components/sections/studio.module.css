@@ -1,0 +1,479 @@
+.page {
+  padding-top: clamp(8.5rem, 14vw, 12rem);
+}
+
+.contact,
+.aboutIntro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(2rem, 7vw, 8rem);
+}
+
+.contact {
+  min-height: 85svh;
+  padding-bottom: clamp(5rem, 11vw, 10rem);
+}
+
+.heading,
+.sectionHeading,
+.ctaLink {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.052em;
+  line-height: 0.92;
+}
+
+.heading {
+  margin: 1.75rem 0 2rem;
+  font-size: clamp(3.65rem, 7.55vw, 9.25rem);
+  animation: enter 0.7s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+}
+
+.heading em,
+.sectionHeading em,
+.ctaLink em {
+  color: var(--accent);
+  font-weight: inherit;
+}
+
+.contactLede {
+  max-width: 32ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  line-height: 1.65;
+}
+
+.dot {
+  display: inline-block;
+  width: 0.42rem;
+  height: 0.42rem;
+  margin-right: 0.45rem;
+  border-radius: 50%;
+  vertical-align: 0.11em;
+  background: var(--accent);
+}
+
+.contacts {
+  display: grid;
+  gap: 1.4rem;
+  margin: clamp(2.4rem, 5vw, 4.2rem) 0 0;
+}
+
+.contacts dt,
+.formHeader > span,
+.replyNote,
+.caption,
+.downLink {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.115em;
+  text-transform: uppercase;
+}
+
+.contacts dd {
+  margin: 0.34rem 0 0;
+  color: var(--foreground);
+  font-size: 0.93rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.contacts a,
+.downLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.contacts a:hover,
+.downLink:hover {
+  color: var(--accent);
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.form {
+  position: relative;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+}
+
+.formHeader,
+.submitRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.formHeader h2 {
+  margin: 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.65rem, 3vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.15rem, 3vw, 2rem) 1.35rem;
+  min-width: 0;
+  margin: 2.35rem 0 1.6rem;
+  padding: 0;
+  border: 0;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.field label span {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 3.1rem;
+  border: 1px solid #ffffff61;
+  border-radius: 0;
+  padding: 0.75rem 0.8rem;
+  background: #ffffff05;
+  color: var(--foreground);
+  font: inherit;
+  font-size: 0.9rem;
+  transition: border-color 170ms ease, background-color 170ms ease;
+}
+
+.field :is(input, select, textarea):focus {
+  border-color: var(--accent);
+  outline: 1px solid var(--accent);
+  outline-offset: 1px;
+  background: #ffffff09;
+}
+
+.field [aria-invalid="true"] {
+  border-color: #f2a59c;
+}
+
+.field ::placeholder,
+.field select:invalid,
+.field select:has(option[value=""]:checked) {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.select {
+  position: relative;
+}
+
+.select select {
+  appearance: none;
+  padding-right: 2rem;
+}
+
+.select option {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.select svg {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--muted);
+}
+
+.fullField {
+  grid-column: 1 / -1;
+}
+
+.fullField textarea {
+  display: block;
+  min-height: 8.75rem;
+  resize: vertical;
+}
+
+.fieldError,
+.formError,
+.success {
+  margin: 0.55rem 0 0;
+  color: #f2a59c;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.success,
+.formError {
+  margin-top: 1rem;
+}
+
+.success {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #c5d9b2;
+}
+
+.trap {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  pointer-events: none;
+}
+
+.submitRow {
+  align-items: center;
+}
+
+.submit {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: 3rem;
+  padding: 0.65rem 1.15rem;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--background);
+  cursor: pointer;
+  font-size: 0.69rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.submit:hover:not(:disabled) {
+  background: transparent;
+  color: var(--accent);
+}
+
+.submit:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+.spinner {
+  animation: spin 850ms linear infinite;
+}
+
+.aboutIntro {
+  align-items: center;
+}
+
+.aboutIntro .heading {
+  font-size: clamp(4.5rem, 12vw, 13rem);
+}
+
+.downLink {
+  width: fit-content;
+  min-height: 2.75rem;
+  margin-top: 2rem;
+}
+
+.aboutFigure {
+  width: min(100%, 35rem);
+  justify-self: end;
+  margin: 0;
+}
+
+.portraitFrame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: #171612;
+}
+
+.portraitFrame img {
+  display: block;
+  width: 100%;
+  height: 112%;
+  margin-top: -7%;
+  object-fit: cover;
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+}
+
+.practice {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.15fr);
+  gap: 1.4rem clamp(2rem, 7vw, 8rem);
+  margin-top: clamp(5rem, 11vw, 10rem);
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 6rem;
+}
+
+.sectionHeading {
+  margin: 0 0 clamp(1.6rem, 4vw, 3rem);
+  font-size: clamp(2.8rem, 6.5vw, 6.6rem);
+}
+
+.bio {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem clamp(1.5rem, 4vw, 3.8rem);
+}
+
+.bio p,
+.services p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.72;
+}
+
+.services {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.services li {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 0.85fr) minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.7rem;
+  border-top: 1px solid var(--line);
+  padding: 1rem 0;
+}
+
+.services li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.services li > span {
+  color: var(--accent);
+  font-size: 0.69rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.services h3 {
+  margin: 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.2rem, 2.4vw, 2.05rem);
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+.aboutCta {
+  margin-block: clamp(5rem, 12vw, 11rem);
+  text-align: center;
+}
+
+.ctaLink {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--foreground);
+  font-size: clamp(2.8rem, 8vw, 7.5rem);
+  text-decoration: none;
+}
+
+.ctaLink svg {
+  display: inline-block;
+  width: 0.39em;
+  height: 0.39em;
+  margin-left: 0.12em;
+  vertical-align: 0.28em;
+  transition: transform 200ms ease;
+}
+
+.ctaLink:hover svg {
+  transform: translate(4px, -4px);
+}
+
+@keyframes enter {
+  from { opacity: 0; transform: translateY(0.4em); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(1turn); }
+}
+
+@media (max-width: 900px) {
+  .contact,
+  .aboutIntro {
+    gap: 2.5rem;
+  }
+
+  .replyNote {
+    font-size: 0.62rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .contact,
+  .aboutIntro,
+  .practice {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contact {
+    row-gap: 3.75rem;
+  }
+
+  .aboutFigure {
+    justify-self: start;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 440px) {
+  .fields,
+  .bio {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .services li {
+    grid-template-columns: 2rem minmax(0, 1fr);
+  }
+
+  .services li p {
+    grid-column: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heading,
+  .spinner {
+    animation: none;
+  }
+
+  .ctaLink svg,
+  .submit {
+    transition: none;
+  }
+}
